@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\TodosController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     echo 'Hello World';
     // return view('welcome');
-});
+}); */
 
 Route::get('/calculator/{number1}/{number2}', function ($number1, $number2) {
     $sum =$number1 + $number2;
@@ -28,3 +29,7 @@ Route::get('/user/{name}', function ($name) {
 })->where([
     'name' =>'[A-Z a-z]+'
 ]);
+
+Route::get('/',[TodosController::class,'index'])->name('todos.index');
+
+Route::get('/todos/create',[TodosController::class,'create'])->name('todos.create');
